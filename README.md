@@ -5,11 +5,6 @@ For the KU course DIS, Databases and Information Systems.
 See Guide.md for further instructions on how the app is
 accessed and used.
 
-### Made by
-- sdw128
-- xqd627
-- ngz419
-
 ### Requirements
 - python3 & pip
 - npm & tailwind (only for updating the styling)
