@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block header %}
+<div class="text-3xl font-bold">Somelite as {{user.name}}</div>
+<nav>
+    <ul class="flex flex-row space-x-4">
+        <li><a href="home" class="hover:underline">Home</a></li>
+        <li><a href="friends" class="hover:underline">Friends</a></li>
+        <li><a href="groups" class="hover:underline">Groups</a></li>
+        <li><a href="logout" class="hover:underline">Log out</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block beforemain %}
+<!-- Group Navbar -->
+<div class="bg-slate-800 text-white p-4">
+    <div class="container mx-auto">
+        <nav>
+            <ul class="flex space-x-4">
+                {% for group in groups %}
+                {% set name = group[1] %}
+                <li><a href="?key={{name}}" class="hover:underline">{{name}}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+
+{% if posts %}
+{% for post in posts %}
+{% set name = post[0] %}
+{% set xpost = post[1] %}
+<div class="space-y-2 mb-2">
+    <div class="text-2xl font-bold mb-2">{{name.capitalize()}}</div>
+            <p class="text-gray-600 mb-4">{{xpost.date}}</p>
+            <p class="mb-4">
+                {{xpost.message}}
+            </p>
+
+<div class="flex flex-row space-x-4">
+<form class="" action="#" method="POST">
+    <input type="hidden" name="like_post" value="{{xpost.id}}">
+    <button type="submit">
+        <i class="fa fa-thumbs-up"></i>
+        <span>
+            {{xpost.likes}}
+        </span>
+    </button>
+</form>
+<form class="" action="#" method="POST">
+    <input type="hidden" name="delete_post" value="{{xpost.id}}">
+    <button type="submit">
+        <i class="fa fa-crosshairs"></i>
+    </button>
+</form>
+</div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

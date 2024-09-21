@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block header %}
+<div class="flex flex-row justify-between items-center">
+    <div>
+        <div class="text-3xl font-bold">
+            Somelite as {{user.name}}
+        </div>
+            <nav>
+                <ul class="flex flex-row space-x-4">
+                    <li><a href="home" class="hover:underline">Home</a></li>
+                    <li><a href="friends" class="hover:underline">Friends</a></li>
+                    <li><a href="groups" class="hover:underline">Groups</a></li>
+                    <li><a href="logout" class="hover:underline">Log out</a></li>
+                </ul>
+            </nav>
+    </div>
+    <form class="" action="#" method="POST">
+        <input type="hidden" name="delete_account" value="True">
+        <button type="submit">
+            <div class="text-3xl font-bold text-rose-500">
+                Account Delete
+            </div>
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="mb-8 max-w-96">
+    <form class="space-y-2" action="#" method="POST">
+        <div class="flex items-center justify-between">
+            <label for="message" class="block text-m font-bold leading-6 text-gray-900">Post a message</label>
+        </div>
+        <div class="mt-2">
+            <input id="message" name="message" type="message" required
+                class="block w-full rounded border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+
+        <div>
+            <button type="submit" class="flex w-full justify-center rounded bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Post
+            </button>
+        </div>
+    </form>
+</div>
+
+{% for i in range(posts|length) %}
+{% set post = posts[i] %}
+{% set name = names[i] %}
+<div class="space-y-2 mb-2">
+    <div class="text-2xl font-bold">
+        {{name}}
+    </div>
+    <p class="text-gray-600">
+        {{post.date}}
+    </p>
+    <p class="break-words max-w-xl">
+        {{post.message}}
+    </p>
+    <div class="flex flex-row space-x-4">
+    <form class="" action="#" method="POST">
+        <input type="hidden" name="like_post" value="{{post.id}}">
+        <button type="submit">
+            <i class="mr-1 fa fa-thumbs-up"></i>
+            <span>
+                {{post.likes}}
+            </span>
+        </button>
+    </form>
+    <form class="" action="#" method="POST">
+        <input type="hidden" name="delete_post" value="{{post.id}}">
+        <button type="submit">
+            <i class="fa fa-crosshairs"></i>
+        </button>
+    </form>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
