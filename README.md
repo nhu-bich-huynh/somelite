@@ -13,7 +13,7 @@ accessed and used.
 ### Building
 ##### Linux
 ```
-git clone git@github.com:skovrup1/somelite.git
+git clone git@github.com:nhu-bich-huynh/somelite.git
 cd somelite
 python3 -m venv .venv
 . .venv/bin/activate
@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ```
 ##### Windows
 ```
-git clone git@github.com:skovrup1/somelite.git
+git clone git@github.com:nhu-bich-huynh/somelite.git
 cd somelite
 python3 -m venv .venv
 ./.venv/Scripts/activate
